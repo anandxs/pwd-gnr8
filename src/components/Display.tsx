@@ -13,6 +13,10 @@ function Display() {
 	const [specialChar, setSpecialChar] = useState<boolean>(false);
 	const [digits, setDigits] = useState<boolean>(false);
 
+	const handleCopy = async () => {
+		await navigator.clipboard.writeText(password);
+	};
+
 	const handleGenerate = () => {
 		if (!lowercase && !uppercase && !digits && !specialChar) setLowercase(true);
 		setSizeError(null);
@@ -71,7 +75,11 @@ function Display() {
 						Generate
 					</button>
 
-					<button className="inline-block rounded border border-teal-600 px-12 py-3 text-sm font-medium text-teal-600 hover:bg-teal-600 hover:text-white focus:outline-none focus:ring active:bg-teal-500">
+					<button
+						onClick={handleCopy}
+						className="inline-block rounded border border-teal-600 px-12 py-3 text-sm font-medium text-teal-600 hover:bg-teal-600 hover:text-white focus:outline-none focus:ring active:bg-teal-500 disabled:opacity-0"
+						disabled={password === ""}
+					>
 						Copy
 					</button>
 				</div>
@@ -138,7 +146,7 @@ function Display() {
 						checked={specialChar}
 					/>
 					<label htmlFor="special" className="text-white text-xs sm:text-lg">
-						Contains digits
+						Contains special characters
 					</label>
 				</div>
 			</form>
