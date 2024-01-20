@@ -6,22 +6,28 @@ function Header() {
 			<div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
 				<div className="flex h-16 items-center justify-between">
 					<div className="md:flex md:items-center md:gap-12">
-						<div className="cursor-pointer block text-teal-600 dark:text-teal-600">
-							<span className="sr-only">Home</span>
-							<span className="font-extrabold text-xl">GNR8</span>
-						</div>
+						<Link to="/">
+							<div className="cursor-pointer block text-teal-600 dark:text-teal-600">
+								<span className="sr-only">Home</span>
+								<span className="font-extrabold text-xl">GNR8</span>
+							</div>
+						</Link>
 					</div>
 
 					<div className="flex items-center gap-4">
 						<div className="sm:flex sm:gap-4">
-							<span className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow dark:hover:bg-teal-500">
-								Login
-							</span>
+							<Link to="/login">
+								<span className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow dark:hover:bg-teal-500">
+									Login
+								</span>
+							</Link>
 
 							<div className="hidden sm:flex">
-								<span className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 dark:bg-gray-800 dark:text-white dark:hover:text-white/75">
-									Register
-								</span>
+								<Link to="/register">
+									<span className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 dark:bg-gray-800 dark:text-white dark:hover:text-white/75">
+										Register
+									</span>
+								</Link>
 							</div>
 						</div>
 
