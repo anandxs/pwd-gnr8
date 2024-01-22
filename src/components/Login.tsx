@@ -1,12 +1,31 @@
 import { useForm } from "react-hook-form";
+import { api } from "../axios";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
 	const form = useForm();
 	const { handleSubmit, register, formState } = form;
 	const { errors } = formState;
+	const navigate = useNavigate();
 
-	const onSubmit = (data: any) => {
-		console.log(data);
+	const onSubmit = async (formValues: any) => {
+		try {
+			const response = await api.post("/login?useCookies=false", {
+				email: formValues.email,
+				password: formValues.password,
+			});
+			console.log(response);
+			localStorage.setItem(
+				"auth",
+				JSON.stringify({
+					auth: response.data.accessToken,
+					refresh: response.data.refreshToken,
+				})
+			);
+			navigate("/list");
+		} catch (err) {
+			console.log(err?.response);
+		}
 	};
 
 	return (

@@ -1,12 +1,28 @@
 import { useForm } from "react-hook-form";
+import { api } from "../axios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
 	const form = useForm();
 	const { handleSubmit, register, formState, getValues } = form;
 	const { errors } = formState;
+	const navigate = useNavigate();
 
-	const onSubmit = (data: any) => {
-		console.log(data);
+	const onSubmit = async (formValues: any) => {
+		try {
+			await api.post("/register", {
+				email: formValues.email,
+				password: formValues.password,
+			});
+			toast.success("Successfully registered. Login to continue");
+			navigate("/login");
+		} catch (err) {
+			if (err?.response?.data?.errors["DuplicateUserName"])
+				toast.error("Email is already taken.");
+			else toast.error("Something went wrong. Try again later.");
+			console.log(err);
+		}
 	};
 
 	return (
