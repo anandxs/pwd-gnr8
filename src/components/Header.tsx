@@ -1,6 +1,17 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { isLoggedIn } from "../hooks/isLoggedIn";
 
 function Header() {
+	const [loggedIn, setLoggedIn] = useState(isLoggedIn);
+	const navigate = useNavigate();
+
+	const handleLogout = () => {
+		localStorage.removeItem("auth");
+		navigate("/login");
+		setLoggedIn(false);
+	};
+
 	return (
 		<header className="bg-white dark:bg-gray-900">
 			<div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
@@ -16,19 +27,32 @@ function Header() {
 
 					<div className="flex items-center gap-4">
 						<div className="sm:flex sm:gap-4">
-							<Link to="/login">
-								<span className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow dark:hover:bg-teal-500">
-									Login
+							{loggedIn && (
+								<span
+									onClick={handleLogout}
+									className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow dark:hover:bg-teal-500"
+								>
+									Logout
 								</span>
-							</Link>
+							)}
 
-							<div className="hidden sm:flex">
-								<Link to="/register">
-									<span className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 dark:bg-gray-800 dark:text-white dark:hover:text-white/75">
-										Register
-									</span>
-								</Link>
-							</div>
+							{!loggedIn && (
+								<>
+									<Link to="/login">
+										<span className="rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white shadow dark:hover:bg-teal-500">
+											Login
+										</span>
+									</Link>
+
+									<div className="hidden sm:flex">
+										<Link to="/register">
+											<span className="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 dark:bg-gray-800 dark:text-white dark:hover:text-white/75">
+												Register
+											</span>
+										</Link>
+									</div>
+								</>
+							)}
 						</div>
 
 						<div className="block md:hidden">
