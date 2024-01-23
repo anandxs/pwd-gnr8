@@ -33,6 +33,15 @@ function List() {
 		};
 	}, [trigger]);
 
+	const handleDelete = async (passwordId: number) => {
+		try {
+			await api.delete(`/passwords?passwordId=${passwordId}`);
+			setTrigger(trigger + 1);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
 	return (
 		<div className="mt-5 sm:p-5 w-8/12 mx-auto">
 			<div className="mb-5">
@@ -61,7 +70,10 @@ function List() {
 										{p.encrptedPassword}
 									</td>
 									<td className="whitespace-nowrap px-4 py-2">
-										<button className="inline-block rounded bg-red-600 px-4 py-2 text-xs font-medium text-white hover:bg-red-700">
+										<button
+											onClick={() => handleDelete(p.id)}
+											className="inline-block rounded bg-red-600 px-4 py-2 text-xs font-medium text-white hover:bg-red-700"
+										>
 											Delete
 										</button>
 									</td>
