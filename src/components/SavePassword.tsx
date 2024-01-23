@@ -1,7 +1,12 @@
 import { useForm } from "react-hook-form";
 import { api } from "../axios";
 
-function SavePassword() {
+type triggerType = {
+	trigger: number;
+	setTrigger: Function;
+};
+
+function SavePassword({ trigger, setTrigger }: triggerType) {
 	const form = useForm();
 	const { register, handleSubmit, formState, setValue } = form;
 	const { errors } = formState;
@@ -10,6 +15,7 @@ function SavePassword() {
 		try {
 			await api.post(`/passwords?encryptedPassword=${formValues?.password}`);
 			setValue("password", null);
+			setTrigger(trigger + 1);
 		} catch (err) {
 			console.log(err);
 		}
@@ -23,20 +29,6 @@ function SavePassword() {
 				onSubmit={handleSubmit(onSubmit)}
 				noValidate
 			>
-				{/* <input
-                type="text"
-                id="platform"
-                placeholder="Platform"
-                className="w-full rounded-md border-gray-200 py-2.5 pe-10 shadow-sm sm:text-sm"
-                disabled
-            />
-            <input
-                type="text"
-                id="username"
-                placeholder="Username/email"
-                className="w-full rounded-md border-gray-200 py-2.5 pe-10 shadow-sm sm:text-sm"
-                disabled
-            /> */}
 				<div className="w-full">
 					<p className="text-red-600 text-xs mb-2">
 						{errors?.password?.message?.toString()}
