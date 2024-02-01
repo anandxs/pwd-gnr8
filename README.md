@@ -1,30 +1,55 @@
-# React + TypeScript + Vite
+# PWD GNR8R
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Password generator built using React with TypeScript. It provides users a customizable way to generate passwords for their different requirements.
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Features](#features)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Contributing](#contributing)
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Password Generation:** Generate strong and secure passwords with customizable options.
 
-- Configure the top-level `parserOptions` property like this:
+- **Password Management:** Save passwords for later reference.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Getting Started
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Follow these steps to set up and run the Password Generator App on your local machine.
+
+### Prerequisites
+
+- Node.js and npm installed (for the React frontend)
+- For using features that require making API calls, please look into my [password manager](https://github.com/anandxs/pwd-gnr8r-manager) application.
+
+### Installation
+
+1. **Clone the Repository**
+
+2. **Install all required dependencies:**
+
+   ```bash
+   cd pwd-gnr8
+   npm install
+   ```
+
+3. **Add environment variables:**
+
+- Create an .env file and add the base url at which your server is running.
+
+  ```
+  VITE_BASE_URL="https://localhost:5000"
+  ```
+
+4. **Run locally:**
+
+   ```bash
+   npm run dev
+   ```
+
+## Contributing
+
+- Contributions are welcome! If you find any issues or have suggestions for improvement, please feel free to open an issue or submit a pull request.
